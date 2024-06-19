@@ -1,0 +1,22 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/ddev/ddev/install-ddev:latest": {}
+  },
+  "portsAttributes": {
+    "3306": {
+        "label": "database"
+    },
+    "8027": {
+        "label": "mailpit"
+    },
+    "8080": {
+        "label": "web http"
+    },
+    "8443": {
+        "label": "web https"
+    }
+},
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html; chmod +x .devcontainer/setup_project.sh && .devcontainer/setup_project.sh;"
+}
